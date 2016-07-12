@@ -3,7 +3,8 @@
 [![Travis Build Status](https://travis-ci.org/iosphere/ISHHoverBar.svg?branch=master)](http://travis-ci.org/iosphere/ISHHoverBar)&nbsp;
 [![Version](http://cocoapod-badges.herokuapp.com/v/ISHHoverBar/badge.png)](http://cocoadocs.org/docsets/ISHHoverBar)
 
-**A floating `UIToolBar` replacement supporting vertical and horizontal orientation.**
+**A floating `UIToolBar` replacement supporting vertical and horizontal orientation as 
+seen in the iOS10 Maps app.**
 It is designed to hover over your content and plays nicely with auto layout.
 
 `ISHHoverBarOrientationVertical` |  `ISHHoverBarOrientationHorizontal`
@@ -14,10 +15,40 @@ The content of the bar is set using `UIBarButtonItems` just as you would configu
 The bar is backed by a `UIVisualEffectsView` allowing you to select from several styles. 
 You can customize most aspects of the view via *Interface Builder*.
 
+## Basic usage
+
+### Setting the bar's contents
+
+The `ISHHoverBar` is populated similarly to a `UIToolbar` using instances of 
+`UIBarButtonItem`. The content can be changed at any time by setting the `items` property.
+The layout and `intrinsicContentSize` will automatically be updated.
+
+A few limitation apply: `ISHHoverBar` only supports instances of `UIBarButtonItem` that 
+have a `title`, `image` or `customView` (subclass of `UIControl`). Most importantly 
+`UIBarButtonItem` instances created using a `UIBarButtonSystemItem` are not supported as 
+access to the underlying content is restricted to private APIs.
+
+### Appearance and orientation
+
+The `ISHHoverBar` supports a vertical or horizontal layout. The orientation can be changed 
+at any time by setting the `orientation` property (default is vertical). Use auto layout 
+to place the bar in your views. 
+
+The following aspects of the `ISHHoverBar` can be changed via code or *Interface Builder*:
+
+* Shadow: 
+  * `shadowColor`
+  * `shadowOpacity`
+  * `shadowRadius`
+* Corner radius: `cornerRadius`
+* Border (also applied to separators between items):
+  * `borderWidth`
+  * `borderColor`
+  
 ## General info
 
-The framework is written in **Objective-C** to allow easy integration into any iOS project 
-and has fully documented headers. `ISHHoverBar` is annotated for easy integration into 
+`ISHHoverBar` is written in **Objective-C** to allow easy integration into any iOS project 
+and has fully documented headers. It is annotated for easy integration into 
 *Swift* code bases.
 
 The `ISHHoverBar` class and sample app have a **Deployment Target** of **iOS8**.
