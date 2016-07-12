@@ -1,5 +1,7 @@
 # <img src="icon.png" align="center" width="60" height="60"> ISHHoverBar
 
+[![Travis Build Status](https://travis-ci.org/iosphere/ISHHoverBar.svg?branch=master)](http://travis-ci.org/iosphere/ISHHoverBar)
+
 **A floating `UIToolBar` replacement supporting vertical and horizontal orientation.**
 It is designed to hover over your content and plays nicely with autolayout.
 
