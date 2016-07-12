@@ -1,9 +1,10 @@
 # <img src="icon.png" align="center" width="60" height="60"> ISHHoverBar
 
-[![Travis Build Status](https://travis-ci.org/iosphere/ISHHoverBar.svg?branch=master)](http://travis-ci.org/iosphere/ISHHoverBar)
+[![Travis Build Status](https://travis-ci.org/iosphere/ISHHoverBar.svg?branch=master)](http://travis-ci.org/iosphere/ISHHoverBar)&nbsp;
+[![Version](http://cocoapod-badges.herokuapp.com/v/ISHHoverBar/badge.png)](http://cocoadocs.org/docsets/ISHHoverBar)
 
 **A floating `UIToolBar` replacement supporting vertical and horizontal orientation.**
-It is designed to hover over your content and plays nicely with autolayout.
+It is designed to hover over your content and plays nicely with auto layout.
 
 `ISHHoverBarOrientationVertical` |  `ISHHoverBarOrientationHorizontal`
 :-------------------------:|:-------------------------:
@@ -11,7 +12,7 @@ It is designed to hover over your content and plays nicely with autolayout.
 
 The content of the bar is set using `UIBarButtonItems` just as you would configure a `UIToolBar`. 
 The bar is backed by a `UIVisualEffectsView` allowing you to select from several styles. 
-You can customize most aspects of the view via the *Interface Builder*.
+You can customize most aspects of the view via *Interface Builder*.
 
 ## General info
 
@@ -29,6 +30,30 @@ Currently the project relies on a single implementation file and its header.
 You can include them directly into your project:
 
 * `ISHHoverBar/ISHHoverBar.h/m`
+
+### CocoaPods
+
+You can use CocoaPods to install ISHHoverBar as a static library:
+
+```ruby
+target 'MyApp' do
+pod 'ISHHoverBar'
+end
+```
+
+See the [official website](https://cocoapods.org/#get_started) to get started with
+CocoaPods.
+
+`ISHHoverBar` can also be installed as a framework through CocoaPods:
+
+```ruby
+target 'MyApp' do
+use_frameworks!
+pod 'ISHHoverBar'
+end
+```
+
+It requires at least iOS 8 at runtime and can be imported as a module.
 
 ## TODO
 
