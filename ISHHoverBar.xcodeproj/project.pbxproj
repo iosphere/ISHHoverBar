@@ -30,6 +30,13 @@
 			remoteGlobalIDString = 1BEE26681D364BB100301E9E;
 			remoteInfo = ISHHoverBar;
 		};
+		1B71D9121D366B1000666E6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC1CDCB31D343F5C00EBF9E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC1CDCBA1D343F5C00EBF9E5;
+			remoteInfo = ISHHoverBarSampleApp;
+		};
 		1BEE266E1D364BB100301E9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC1CDCB31D343F5C00EBF9E5 /* Project object */;
@@ -247,6 +254,7 @@
 			);
 			dependencies = (
 				1B71D9101D3651C300666E6B /* PBXTargetDependency */,
+				1B71D9131D366B1000666E6B /* PBXTargetDependency */,
 			);
 			name = ISHHoverBarTests;
 			productName = ISHHoverBarTests;
@@ -275,6 +283,7 @@
 					};
 					DC1CDCD31D343F5C00EBF9E5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = DC1CDCBA1D343F5C00EBF9E5;
 					};
 				};
 			};
@@ -359,6 +368,11 @@
 			isa = PBXTargetDependency;
 			target = 1BEE26681D364BB100301E9E /* ISHHoverBar */;
 			targetProxy = 1B71D90F1D3651C300666E6B /* PBXContainerItemProxy */;
+		};
+		1B71D9131D366B1000666E6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC1CDCBA1D343F5C00EBF9E5 /* ISHHoverBarSampleApp */;
+			targetProxy = 1B71D9121D366B1000666E6B /* PBXContainerItemProxy */;
 		};
 		1BEE266F1D364BB100301E9E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -546,6 +560,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.ISHHoverBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ISHHoverBarSampleApp.app/ISHHoverBarSampleApp";
 			};
 			name = Debug;
 		};
@@ -556,6 +571,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.ISHHoverBarTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ISHHoverBarSampleApp.app/ISHHoverBarSampleApp";
 			};
 			name = Release;
 		};
