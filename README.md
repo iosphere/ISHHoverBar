@@ -6,7 +6,9 @@
 
 **A floating `UIToolBar` replacement as seen in the iOS 10 Maps app, supporting both vertical and horizontal orientation.**  
 
-It is designed to hover above your content and it plays nicely with auto layout.
+It is designed to hover above your content and it plays nicely with auto layout. Combine 
+it with [`ISHPullUp`](https://github.com/iosphere/ISHPullUp) to create a UI resembling the 
+iOS 10 Maps app.
 
 `ISHHoverBarOrientationVertical` |  `ISHHoverBarOrientationHorizontal`
 :-------------------------:|:-------------------------:
@@ -113,6 +115,11 @@ github iosphere/ISHHoverBar
 See the [Carthage repository](https://github.com/Carthage/Carthage) to get started
 with Carthage.
 
+## More OpenSource projects by iosphere
+
+<img src="https://raw.githubusercontent.com/iosphere/ISHPermissionKit/master/icon.png" align="center" width="40" height="40"> [`ISHPermissionKit`](https://github.com/iosphere/ISHPermissionKit) - A polite and unified way of asking for permission on iOS
+
+<img src="https://raw.githubusercontent.com/iosphere/ISHPullUp/master/icon.png" align="center" width="40" height="40"> [`ISHPullUp`](https://github.com/iosphere/ISHPullUp) - Vertical split view controller with pull up gesture as seen in the iOS 10 Maps app
 
 ## TODO
 
