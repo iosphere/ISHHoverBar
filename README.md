@@ -1,9 +1,10 @@
 # <img src="icon.png" align="center" width="60" height="60"> ISHHoverBar
 
 [![Travis Build Status](https://travis-ci.org/iosphere/ISHHoverBar.svg?branch=master)](http://travis-ci.org/iosphere/ISHHoverBar)&nbsp;
-[![Version](http://cocoapod-badges.herokuapp.com/v/ISHHoverBar/badge.png)](http://cocoadocs.org/docsets/ISHHoverBar)
+[![Version](http://cocoapod-badges.herokuapp.com/v/ISHHoverBar/badge.png)](http://cocoadocs.org/docsets/ISHHoverBar)&nbsp;
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-**A floating `UIToolBar` replacement as seen in the iOS10 Maps app, supporting both vertical and horizontal orientation.**  
+**A floating `UIToolBar` replacement as seen in the iOS 10 Maps app, supporting both vertical and horizontal orientation.**  
 
 It is designed to hover above your content and it plays nicely with auto layout.
 
@@ -55,25 +56,38 @@ The `ISHHoverBar` class and sample app have a **Deployment Target** of **iOS 8**
 
 ## Integration into your project
 
+### Dynamically-linked framework
+
+Add the project file `ISHHoverBar.xcodeproj` as a subproject of your app. 
+Then add the framework `ISHHoverBar.framework` to the app's embedded binaries 
+(on the *General* tab of your app target's settings). On the *Build Phases* tab, 
+verify that the framework has also been added to the *Link Binary with
+Libraries* phase, and that an *Embed Frameworks* phase has been created (unless
+it existed before).
+
+The framework can be used as a module, so you can use `@import ISHHoverBar;`
+(Objective-C) and `import ISHHoverBar` (Swift) to import all public headers. 
+
+Further reading on Modules: 
+[Clang Documentation](http://clang.llvm.org/docs/Modules.html)
+
 ### Include files directly
 
 Currently the project relies on a single implementation file and its header. 
 You can include them directly into your project:
 
-* `ISHHoverBar/ISHHoverBar.h/m`
+* `ISHHoverBar/ISHHoverBar.`{`h`/`m`}
 
 ### CocoaPods
 
-You can use CocoaPods to install `ISHHoverBar` as a static library:
+You can use CocoaPods to install `ISHHoverBar` as a static library. Add this
+to your Podfile:
 
 ```ruby
 target 'MyApp' do
   pod 'ISHHoverBar'
 end
 ```
-
-See the [official website](https://cocoapods.org/#get_started) to get started with
-CocoaPods.
 
 `ISHHoverBar` can also be installed as a framework:
 
@@ -83,6 +97,22 @@ target 'MyApp' do
   pod 'ISHHoverBar'
 end
 ```
+
+See the [official website](https://cocoapods.org/#get_started) to get started with
+CocoaPods.
+
+### Carthage
+
+Since `ISHHoverBar` can be built as a framework, it supports Carthage, too. Add
+this to your Cartfile:
+
+```
+github iosphere/ISHHoverBar
+```
+
+See the [Carthage repository](https://github.com/Carthage/Carthage) to get started
+with Carthage.
+
 
 ## TODO
 
