@@ -80,7 +80,7 @@
 
     for (UIControl *control in self.hoverBar.controls) {
         XCTAssertNotNil(control.superview);
-        XCTAssertTrue(control.allTargets.count > 0);
+        XCTAssertTrue(control.allTargets.anyObject == self);
         [control sendActionsForControlEvents:UIControlEventTouchUpInside];
         XCTAssertTrue([self.firedControls containsObject:control]);
     }
