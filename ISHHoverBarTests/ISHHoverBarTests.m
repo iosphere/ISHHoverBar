@@ -13,7 +13,7 @@
 
 @interface ISHHoverBarTests : XCTestCase
 @property (nonatomic) ISHHoverBar *hoverBar;
-@property (nonatomic) NSMutableArray *firedControls;
+@property (nonatomic) NSMutableArray <UIBarButtonItem *> *firedItems;
 @end
 
 @implementation ISHHoverBarTests
@@ -21,20 +21,21 @@
 - (void)setUp {
     [super setUp];
     self.hoverBar = [ISHHoverBar new];
-    self.firedControls = [NSMutableArray new];
+    self.firedItems = [NSMutableArray new];
 }
 
 - (void)tearDown {
     [super tearDown];
     self.hoverBar = nil;
-    self.firedControls = nil;
+    self.firedItems = nil;
 }
 
-- (void)selectorForControl:(UIControl *)control {
-    XCTAssertNotNil(control);
+- (void)selectorForControl:(UIBarButtonItem *)item {
+    XCTAssertNotNil(item);
+    XCTAssertEqualObjects(item.class, [UIBarButtonItem class]);
 
-    if (control) {
-        [self.firedControls addObject:control];
+    if (item) {
+        [self.firedItems addObject:item];
     }
 }
 
@@ -80,9 +81,11 @@
 
     for (UIControl *control in self.hoverBar.controls) {
         XCTAssertNotNil(control.superview);
-        XCTAssertTrue(control.allTargets.anyObject == self);
         [control sendActionsForControlEvents:UIControlEventTouchUpInside];
-        XCTAssertTrue([self.firedControls containsObject:control]);
+    }
+
+    for (UIBarButtonItem *item in self.hoverBar.items) {
+        XCTAssertTrue([self.firedItems containsObject:item], @"item should fire it's action: %@", item.title);
     }
 }
 
