@@ -6,7 +6,9 @@
 //  Copyright © 2016 iosphere GmbH. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
+@import ISHHoverBar;
+
 #import "ISHHoverBar+Tests.h"
 
 @interface ISHHoverBarTests : XCTestCase
@@ -73,7 +75,7 @@
 
 - (void)testControlTargets {
     [self setupDefaultItems];
-    // we expect to have on UIControl per items
+    // we expect to have one UIControl per item
     XCTAssertEqual(self.hoverBar.controls.count, 2);
 
     for (UIControl *control in self.hoverBar.controls) {

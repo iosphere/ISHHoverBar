@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - Framework Info
+
+//! Project version number for ISHHoverBar.
+FOUNDATION_EXPORT double ISHHoverBarVersionNumber;
+
+//! Project version string for ISHHoverBar.
+FOUNDATION_EXPORT const unsigned char ISHHoverBarVersionString[];
+
+#pragma mark - HoverBar
+
 typedef NS_ENUM (NSInteger, ISHHoverBarOrientation) {
     /// In vertical orientation the ISHHoverBar places bar buttons from top to bottom.
     ISHHoverBarOrientationVertical,
