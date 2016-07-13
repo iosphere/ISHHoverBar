@@ -170,6 +170,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 @property (nonatomic, nonnull) ISHHoverSeparatorView *separatorView;
 @property (nonatomic, nonnull) ISHHoverShadowLayer *shadowLayer;
 @property (nonatomic, nullable) NSArray<UIControl *> *controls;
+@property (nonatomic, nullable) NSMapTable<UIControl *, UIBarButtonItem *> *itemsControlsMap;
 @end
 
 @implementation ISHHoverBar
@@ -188,6 +189,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 - (void)commonInit {
     [self setBackgroundColor:[UIColor clearColor]];
+    self.itemsControlsMap = [NSMapTable weakToWeakObjectsMapTable];
 
     // add shadow layer
     ISHHoverShadowLayer *shadowLayer = [ISHHoverShadowLayer new];
@@ -290,6 +292,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
         [self addSubview:control];
         [controls addObject:control];
+        [self.itemsControlsMap setObject:item forKey:control];
     }
 
     self.controls = [controls copy];
@@ -317,8 +320,31 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
         [button setTitle:item.title forState:UIControlStateNormal];
     }
 
-    [button addTarget:item.target action:item.action forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(handleActionForControl:) forControlEvents:UIControlEventTouchUpInside];
     return button;
+}
+
+- (void)handleActionForControl:(nonnull UIControl *)control {
+    NSParameterAssert(control);
+
+    if (!control) {
+        return;
+    }
+
+    // get bar button item
+    UIBarButtonItem *item = [self.itemsControlsMap objectForKey:control];
+    NSParameterAssert(item.target);
+    NSParameterAssert(item.action);
+
+    if (!item.target || !item.action) {
+        return;
+    }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    // perform action
+    [item.target performSelector:item.action withObject:item];
+#pragma clang diagnostic pop
 }
 
 - (void)resetControls {
@@ -327,6 +353,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     }
 
     self.controls = nil;
+    [self.itemsControlsMap removeAllObjects];
 }
 
 - (void)setControls:(nullable NSArray<UIControl *> *)controls {
