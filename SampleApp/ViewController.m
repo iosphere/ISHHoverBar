@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ISHHoverBar.h"
+@import ISHHoverBar;
 @import MapKit;
 
 @interface ViewController ()
