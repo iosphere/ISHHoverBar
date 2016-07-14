@@ -47,6 +47,7 @@ The following aspects of `ISHHoverBar` can be changed via code or *Interface Bui
 * Border (also applied to separators between items):
   * `borderWidth`
   * `borderColor`
+* Background visual effect: `effect`
   
 ## General info
 
