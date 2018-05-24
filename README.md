@@ -48,7 +48,15 @@ The following aspects of `ISHHoverBar` can be changed via code or *Interface Bui
   * `borderWidth`
   * `borderColor`
 * Background visual effect: `effect`
-  
+
+### Item background color
+
+The color can easily be changed by changing the `backgroundColor` property of the `UIBarButtonItem`.
+
+### Item size
+If you want to change the item size to a fixed length you can pass an object that conforms to `ISHHoverBarItemType`. This onyl has the additional attribute `CGFloat length`.
+After chaning the length call `[self.hoverbar reload]` to apply the changes. 
+
 ## General info
 
 `ISHHoverBar` is written in **Objective-C** to allow easy integration into any iOS project 
