@@ -171,7 +171,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 @property (nonatomic, nonnull) ISHHoverSeparatorView *separatorView;
 @property (nonatomic, nonnull) ISHHoverShadowLayer *shadowLayer;
 @property (nonatomic, nullable) NSArray<UIControl *> *controls;
-@property (nonatomic, nullable) NSMapTable<UIControl *, ISHHoverBarItem *> *itemsControlsMap;
+@property (nonatomic, nullable) NSMapTable<UIControl *, UIBarButtonItem *> *itemsControlsMap;
 @end
 
 @implementation ISHHoverBar
@@ -231,7 +231,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self setNeedsLayout];
 }
 
-- (void)setItems:(nullable NSArray<ISHHoverBarItem *> *)items {
+- (void)setItems:(nullable NSArray<UIBarButtonItem *> *)items {
     if (items == _items) {
         return;
     }
@@ -311,7 +311,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self resetControls];
     NSMutableArray *controls = [NSMutableArray arrayWithCapacity:self.items.count];
 
-    for (ISHHoverBarItem *item in self.items) {
+    for (UIBarButtonItem *item in self.items) {
         UIControl *control = [self newControlForBarButtonItem:item];
         if (!control) {
             continue;
@@ -324,7 +324,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     self.controls = [controls copy];
 }
 
-- (nullable UIControl *)newControlForBarButtonItem:(nonnull ISHHoverBarItem *)item {
+- (nullable UIControl *)newControlForBarButtonItem:(nonnull UIBarButtonItem *)item {
     if ([item.customView isKindOfClass:[UIControl class]]) {
         return item.customView;
     }
@@ -358,7 +358,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     }
 
     // get bar button item
-    ISHHoverBarItem *item = [self.itemsControlsMap objectForKey:control];
+    UIBarButtonItem *item = [self.itemsControlsMap objectForKey:control];
     NSParameterAssert(item.target);
     NSParameterAssert(item.action);
 

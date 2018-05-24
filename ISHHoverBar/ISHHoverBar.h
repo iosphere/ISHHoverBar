@@ -21,7 +21,7 @@ IB_DESIGNABLE
 @interface ISHHoverBar : UIView
 
 /// Array of UIBarButtonItem to be included in the bar. Currently only items with a title, image, or customView of type UIControl are supported.
-@property (nonatomic, nullable) IBOutlet NSArray<ISHHoverBarItem *> *items;
+@property (nonatomic, nullable) IBOutlet NSArray<UIBarButtonItem *> *items;
 
 /// The orientation of the hover bar. Default is ISHHoverBarOrientationVertical.
 @property (nonatomic) ISHHoverBarOrientation orientation;

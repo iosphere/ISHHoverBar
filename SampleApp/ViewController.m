@@ -39,7 +39,7 @@
 
 - (void)toggleOrientation:(UIControl *)sender {
     self.isToggled = !self.isToggled;
-    self.hoverbar.items[0].length = self.isToggled ? 44 : 88;
+    ((ISHHoverBarItem *)self.hoverbar.items[0]).length = self.isToggled ? 44 : 88;
     self.hoverbar.items[0].customView.backgroundColor = self.isToggled ? UIColor.clearColor : UIColor.orangeColor;
     [self.hoverbar reload];
 }
