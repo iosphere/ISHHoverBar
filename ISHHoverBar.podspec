@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ISHHoverBar'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'A vertical or horizontal toolbar that is designed to hover (float) over your content as seen in the iOS 10 Maps app'
   s.description      = <<-DESC
 A floating UIToolBar replacement supporting vertical and horizontal orientation. It is designed to hover over your content and plays nicely with auto layout.
