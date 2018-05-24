@@ -23,13 +23,13 @@
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [infoButton addTarget:self action:@selector(toggleOrientation:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-    [self.hoverbar setItems:@[mapBarButton, infoBarButton]];
+    (self.hoverbar).items = @[mapBarButton, infoBarButton];
 }
 
 - (void)toggleOrientation:(UIControl *)sender {
     BOOL isHorizontal = (self.hoverbar.orientation == ISHHoverBarOrientationHorizontal);
 
-    [self.hoverbar setOrientation:isHorizontal ? ISHHoverBarOrientationVertical : ISHHoverBarOrientationHorizontal];
+    (self.hoverbar).orientation = isHorizontal ? ISHHoverBarOrientationVertical : ISHHoverBarOrientationHorizontal;
 }
 
 @end
