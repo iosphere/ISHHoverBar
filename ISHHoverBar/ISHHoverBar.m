@@ -8,7 +8,7 @@
 
 #import "ISHHoverBar.h"
 
-const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
+const CGFloat ISHHoverBarDefaultItemDimension = 55.0;
 
 #pragma mark ISHHoverShadowLayer
 
@@ -362,15 +362,15 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     }
 
     _controls = controls;
-    (self.separatorView).viewsToSeparate = controls;
+    self.separatorView.viewsToSeparate = controls;
 }
 
 #pragma mark - Background view
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    (self.backgroundView).clipsToBounds = (cornerRadius != 0);
-    (self.backgroundView.layer).cornerRadius = cornerRadius;
-    (self.shadowLayer).cornerRadius = cornerRadius;
+    self.backgroundView.clipsToBounds = (cornerRadius != 0);
+    self.backgroundView.layer.cornerRadius = cornerRadius;
+    self.shadowLayer.cornerRadius = cornerRadius;
 }
 
 - (CGFloat)cornerRadius {
@@ -378,8 +378,8 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
-    (self.backgroundView.layer).borderWidth = borderWidth;
-    (self.separatorView).separatorWidth = borderWidth;
+    self.backgroundView.layer.borderWidth = borderWidth;
+    self.separatorView.separatorWidth = borderWidth;
 }
 
 - (CGFloat)borderWidth {
@@ -387,8 +387,8 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setBorderColor:(nullable UIColor *)borderColor {
-    (self.backgroundView.layer).borderColor = borderColor.CGColor;
-    (self.separatorView).separatorColor = borderColor;
+    self.backgroundView.layer.borderColor = borderColor.CGColor;
+    self.separatorView.separatorColor = borderColor;
 }
 
 - (nullable UIColor *)borderColor {
@@ -404,12 +404,12 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setEffect:(nullable UIVisualEffect *)effect {
-    return (self.backgroundView).effect = effect;
+    self.backgroundView.effect = effect;
 }
 
 #pragma mark - Shadow
 - (void)setShadowColor:(nullable UIColor *)shadowColor {
-    (self.shadowLayer).shadowColor = shadowColor.CGColor;
+    self.shadowLayer.shadowColor = shadowColor.CGColor;
 }
 
 - (nullable UIColor *)shadowColor {
@@ -421,7 +421,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setShadowRadius:(CGFloat)shadowRadius {
-    (self.shadowLayer).shadowRadius = shadowRadius;
+    self.shadowLayer.shadowRadius = shadowRadius;
 }
 
 - (CGFloat)shadowRadius {
