@@ -7,6 +7,7 @@
 //
 
 #import "ISHHoverBar.h"
+#import "ISHHoverBarItemType.h"
 
 const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 

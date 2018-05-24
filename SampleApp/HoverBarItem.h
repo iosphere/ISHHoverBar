@@ -1,5 +1,5 @@
 //
-//  ISHHoverBarItem.h
+//  HoverBarItem.h
 //  ISHHoverBar
 //
 //  Created by Alex Steiner on 24.05.18.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ISHHoverBarItemType.h"
+@import ISHHoverBar;
 
-@interface ISHHoverBarItem : UIBarButtonItem <ISHHoverBarItemType>
+@interface HoverBarItem : UIBarButtonItem <ISHHoverBarItemType>
 
 @property (nonatomic) CGFloat length;
 

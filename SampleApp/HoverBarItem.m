@@ -1,5 +1,5 @@
 //
-//  ISHHoverBarItem.m
+//  HoverBarItem.m
 //  ISHHoverBar
 //
 //  Created by Alex Steiner on 24.05.18.
@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ISHHoverBarItem.h"
+#import "HoverBarItem.h"
 
-@interface ISHHoverBarItem ()
-
+@interface HoverBarItem ()
 @end
 
-@implementation ISHHoverBarItem
+@implementation HoverBarItem
+
 - (instancetype)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action length:(CGFloat)length {
     self = [super initWithImage:image style:style target:target action:action];
     self.length = length;
@@ -26,4 +26,5 @@
     self.length = length;
     return self;
 }
+
 @end

@@ -21,8 +21,7 @@
 		DC5D282E1D3515C0005084AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282A1D3515C0005084AC /* LaunchScreen.storyboard */; };
 		DC5D282F1D3515C0005084AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282C1D3515C0005084AC /* Main.storyboard */; };
 		FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */ = {isa = PBXBuildFile; fileRef = FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FA94120520B729B900E7C045 /* ISHHoverBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA94120420B729B900E7C045 /* ISHHoverBarItem.m */; };
-		FA94120720B72A6F00E7C045 /* ISHHoverBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FA94120620B729C200E7C045 /* ISHHoverBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA90B96B20B74E0D006993F3 /* HoverBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA94120420B729B900E7C045 /* HoverBarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +83,8 @@
 		DC5D282D1D3515C0005084AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC5D28311D351652005084AC /* ISHHoverBar+Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISHHoverBar+Tests.h"; sourceTree = "<group>"; };
 		FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISHHoverBarItemType.h; sourceTree = "<group>"; };
-		FA94120420B729B900E7C045 /* ISHHoverBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISHHoverBarItem.m; sourceTree = "<group>"; };
-		FA94120620B729C200E7C045 /* ISHHoverBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISHHoverBarItem.h; sourceTree = "<group>"; };
+		FA94120420B729B900E7C045 /* HoverBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HoverBarItem.m; sourceTree = "<group>"; };
+		FA94120620B729C200E7C045 /* HoverBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoverBarItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +148,6 @@
 			children = (
 				1BEE266B1D364BB100301E9E /* ISHHoverBar.h */,
 				DC1CDCE41D343FA400EBF9E5 /* ISHHoverBar.m */,
-				FA94120620B729C200E7C045 /* ISHHoverBarItem.h */,
-				FA94120420B729B900E7C045 /* ISHHoverBarItem.m */,
 				FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */,
 				1BEE266D1D364BB100301E9E /* Info.plist */,
 			);
@@ -192,6 +189,8 @@
 		DC5D28301D3515CF005084AC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA94120620B729C200E7C045 /* HoverBarItem.h */,
+				FA94120420B729B900E7C045 /* HoverBarItem.m */,
 				DC1CDCC11D343F5C00EBF9E5 /* AppDelegate.h */,
 				DC1CDCC21D343F5C00EBF9E5 /* AppDelegate.m */,
 				DC1CDCC41D343F5C00EBF9E5 /* ViewController.h */,
@@ -207,9 +206,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */,
 				1BEE266C1D364BB100301E9E /* ISHHoverBar.h in Headers */,
-				FA94120720B72A6F00E7C045 /* ISHHoverBarItem.h in Headers */,
+				FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +349,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA94120520B729B900E7C045 /* ISHHoverBarItem.m in Sources */,
 				1BEE26761D364C3A00301E9E /* ISHHoverBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA90B96B20B74E0D006993F3 /* HoverBarItem.m in Sources */,
 				DC1CDCC61D343F5C00EBF9E5 /* ViewController.m in Sources */,
 				DC1CDCC31D343F5C00EBF9E5 /* AppDelegate.m in Sources */,
 				DC1CDCC01D343F5C00EBF9E5 /* main.m in Sources */,

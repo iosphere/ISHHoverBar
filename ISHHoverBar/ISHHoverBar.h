@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ISHHoverBarItem.h"
+#import "ISHHoverBarItemType.h"
 
 typedef NS_ENUM (NSInteger, ISHHoverBarOrientation) {
     /// In vertical orientation the ISHHoverBar places bar buttons from top to bottom.
