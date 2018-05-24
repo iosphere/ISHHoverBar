@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ISHHoverBarItem.h"
 
 typedef NS_ENUM (NSInteger, ISHHoverBarOrientation) {
     /// In vertical orientation the ISHHoverBar places bar buttons from top to bottom.
@@ -20,7 +21,7 @@ IB_DESIGNABLE
 @interface ISHHoverBar : UIView
 
 /// Array of UIBarButtonItem to be included in the bar. Currently only items with a title, image, or customView of type UIControl are supported.
-@property (nonatomic, nullable) IBOutlet NSArray<UIBarButtonItem *> *items;
+@property (nonatomic, nullable) IBOutlet NSArray<ISHHoverBarItem *> *items;
 
 /// The orientation of the hover bar. Default is ISHHoverBarOrientationVertical.
 @property (nonatomic) ISHHoverBarOrientation orientation;
@@ -45,5 +46,7 @@ IB_DESIGNABLE
 
 /// The bar's shadow color. Default is black.
 @property (nonatomic, nullable) IBInspectable UIColor *shadowColor;
+
+-(void)reload;
 
 @end

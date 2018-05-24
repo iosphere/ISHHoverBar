@@ -13,23 +13,35 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet ISHHoverBar *hoverbar;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property BOOL isToggled;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UIBarButtonItem *mapBarButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [infoButton addTarget:self action:@selector(toggleOrientation:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-    (self.hoverbar).items = @[mapBarButton, infoBarButton];
+//    infoButton.layer.backgroundColor = UIColor.greenColor.CGColor;
+//    infoButton.layer.masksToBounds = YES;
+//    infoButton.layer.cornerRadius = 8;
+//    infoButton.backgroundColor = UIColor.greenColor;
+//    infoButton.layer.masksToBounds = YES;
+    infoButton.clipsToBounds = YES;
+    ISHHoverBarItem *infoBarButton = [[ISHHoverBarItem alloc] initWithCustomView:infoButton length:88];
+    self.hoverbar.orientation = ISHHoverBarOrientationHorizontal;
+    self.isToggled = false;
+    (self.hoverbar).items = @[infoBarButton, mapBarButton];
+    self.hoverbar.cornerRadius = 8;
 }
 
 - (void)toggleOrientation:(UIControl *)sender {
-    BOOL isHorizontal = (self.hoverbar.orientation == ISHHoverBarOrientationHorizontal);
-
-    (self.hoverbar).orientation = isHorizontal ? ISHHoverBarOrientationVertical : ISHHoverBarOrientationHorizontal;
+    self.isToggled = !self.isToggled;
+    self.hoverbar.items[0].length = self.isToggled ? 44 : 88;
+    self.hoverbar.items[0].customView.backgroundColor = self.isToggled ? UIColor.clearColor : UIColor.orangeColor;
+    [self.hoverbar reload];
 }
 
 @end
