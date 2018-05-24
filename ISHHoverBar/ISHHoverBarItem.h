@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ISHHoverBarItemType.h"
 
-@interface ISHHoverBarItem : UIBarButtonItem
+@interface ISHHoverBarItem : UIBarButtonItem <ISHHoverBarItemType>
 
 @property (nonatomic) CGFloat length;
 

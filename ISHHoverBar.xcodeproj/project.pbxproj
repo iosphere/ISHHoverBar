@@ -20,6 +20,7 @@
 		DC1CDCE81D344FA600EBF9E5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1CDCE71D344FA600EBF9E5 /* MapKit.framework */; };
 		DC5D282E1D3515C0005084AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282A1D3515C0005084AC /* LaunchScreen.storyboard */; };
 		DC5D282F1D3515C0005084AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282C1D3515C0005084AC /* Main.storyboard */; };
+		FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */ = {isa = PBXBuildFile; fileRef = FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA94120520B729B900E7C045 /* ISHHoverBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA94120420B729B900E7C045 /* ISHHoverBarItem.m */; };
 		FA94120720B72A6F00E7C045 /* ISHHoverBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FA94120620B729C200E7C045 /* ISHHoverBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		DC5D282B1D3515C0005084AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC5D282D1D3515C0005084AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC5D28311D351652005084AC /* ISHHoverBar+Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISHHoverBar+Tests.h"; sourceTree = "<group>"; };
+		FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISHHoverBarItemType.h; sourceTree = "<group>"; };
 		FA94120420B729B900E7C045 /* ISHHoverBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISHHoverBarItem.m; sourceTree = "<group>"; };
 		FA94120620B729C200E7C045 /* ISHHoverBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISHHoverBarItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 				DC1CDCE41D343FA400EBF9E5 /* ISHHoverBar.m */,
 				FA94120620B729C200E7C045 /* ISHHoverBarItem.h */,
 				FA94120420B729B900E7C045 /* ISHHoverBarItem.m */,
+				FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */,
 				1BEE266D1D364BB100301E9E /* Info.plist */,
 			);
 			path = ISHHoverBar;
@@ -204,6 +207,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */,
 				1BEE266C1D364BB100301E9E /* ISHHoverBar.h in Headers */,
 				FA94120720B72A6F00E7C045 /* ISHHoverBarItem.h in Headers */,
 			);

@@ -248,8 +248,9 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     
     CGFloat itemLength = 0.0;
     for (UIBarButtonItem* item in self.items) {
-        if ([item isKindOfClass:[ISHHoverBarItem class]]) {
-            itemLength += ((ISHHoverBarItem*)item).length;
+        NSLog(@"%d", [item conformsToProtocol:@protocol(ISHHoverBarItemType)]);
+        if ([item conformsToProtocol:@protocol(ISHHoverBarItemType)]) {
+            itemLength += ((UIBarButtonItem<ISHHoverBarItemType> *)item).length;
         } else {
             itemLength += ISHHoverBarDefaultItemDimension;
         }
@@ -277,8 +278,8 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     int i = 0;
     for (UIControl *control in self.controls) {
         CGFloat length = ISHHoverBarDefaultItemDimension;
-        if ([self.items[i] isKindOfClass:[ISHHoverBarItem class]]) {
-            length = ((ISHHoverBarItem*) self.items[i]).length;
+        if ([self.items[i] conformsToProtocol:@protocol(ISHHoverBarItemType)]) {
+            length = ((UIBarButtonItem<ISHHoverBarItemType> *) self.items[i]).length;
         }
         CGRect frame;
         
