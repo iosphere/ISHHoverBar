@@ -53,7 +53,7 @@
 
     for (ISHHoverBar *bar in bars) {
         // after initialization we expect to have one subview (background)
-        XCTAssertEqual(bar.subviews.count, 2);
+        XCTAssertEqual(bar.subviews[0].subviews.count, 2);
 
         // Test defaults
         XCTAssertEqual(bar.borderWidth, 1.0/[[UIScreen mainScreen] scale]);
@@ -96,12 +96,12 @@
     // we expect to have one per item plus background and separator
     NSUInteger expectedViewCount = self.hoverBar.items.count + 2;
 
-    XCTAssertEqual(self.hoverBar.subviews.count, expectedViewCount);
+    XCTAssertEqual(self.hoverBar.subviews[0].subviews.count, expectedViewCount);
 
     // run setup a second time to set the items again
     [self setupDefaultItems];
 
-    XCTAssertEqual(self.hoverBar.subviews.count, expectedViewCount);
+    XCTAssertEqual(self.hoverBar.subviews[0].subviews.count, expectedViewCount);
 }
 
 - (void)testControlsLayout {
