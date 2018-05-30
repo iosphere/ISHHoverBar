@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIBarButtonItem *mapBarButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [infoButton addTarget:self action:@selector(toggleOrientation:) forControlEvents:UIControlEventTouchUpInside];
@@ -35,8 +34,8 @@
 
 - (void)toggleOrientation:(UIControl *)sender {
     BOOL isHorizontal = (self.hoverbar.orientation == ISHHoverBarOrientationHorizontal);
-    
-    (self.hoverbar).orientation = isHorizontal ? ISHHoverBarOrientationVertical : ISHHoverBarOrientationHorizontal;
+
+    [self.hoverbar setOrientation:isHorizontal ? ISHHoverBarOrientationVertical : ISHHoverBarOrientationHorizontal];
     
     
     self.isToggled = !self.isToggled;

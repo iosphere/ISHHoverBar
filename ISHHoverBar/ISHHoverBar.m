@@ -25,14 +25,14 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     CAShapeLayer *masklayer = [CAShapeLayer new];
     self.maskShapeLayer = masklayer;
     masklayer.fillRule = kCAFillRuleEvenOdd;
-    masklayer.fillColor = [UIColor blackColor].CGColor;
+    masklayer.fillColor = [[UIColor blackColor] CGColor];
     self.mask = masklayer;
     self.shadowOffset = CGSizeZero;
     return self;
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    super.cornerRadius = cornerRadius;
+    [super setCornerRadius:cornerRadius];
     [self updateShadowPathAndMask];
 }
 
@@ -48,13 +48,13 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 - (void)updateShadowPathAndMask {
     UIBezierPath *shadowPath = [self bezierPathForShadow];
 
-    self.shadowPath = shadowPath.CGPath;
+    self.shadowPath = [shadowPath CGPath];
     // using the even odd fill rule we create a path that includes the shadow which contains a path that excludes this layer's shadow path
     CGFloat outsetForShadow = -1 * (fabs(self.shadowOffset.height) + fabs(self.shadowOffset.width) + self.shadowRadius * 2.0);
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(self.bounds, UIEdgeInsetsMake(outsetForShadow, outsetForShadow, outsetForShadow, outsetForShadow))];
     [maskPath appendPath:shadowPath];
-    (self.maskShapeLayer).frame = self.bounds;
-    (self.maskShapeLayer).path = maskPath.CGPath;
+    [self.maskShapeLayer setFrame:self.bounds];
+    [self.maskShapeLayer setPath:[maskPath CGPath]];
 }
 
 @end
@@ -190,12 +190,12 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)commonInit {
-    self.backgroundColor = [UIColor clearColor];
+    [self setBackgroundColor:[UIColor clearColor]];
     self.itemsControlsMap = [NSMapTable weakToWeakObjectsMapTable];
 
     // add shadow layer
     ISHHoverShadowLayer *shadowLayer = [ISHHoverShadowLayer new];
-    self.shadowLayer = shadowLayer;
+    [self setShadowLayer:shadowLayer];
     [self.layer addSublayer:shadowLayer];
 
     UIView* backgroundContainerView = [[UIView alloc] init];
@@ -204,21 +204,21 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     
     // add visual effects view as background
     UIVisualEffectView *bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    self.backgroundView = bgView;
+    [self setBackgroundView:bgView];
     [self.backgroundContainerView addSubview:bgView];
 
     // add separator drawing view on top
     ISHHoverSeparatorView *sepView = [ISHHoverSeparatorView new];
-    self.separatorView = sepView;
+    [self setSeparatorView:sepView];
     [self.backgroundContainerView addSubview:sepView];
 
     // set default values
-    self.borderColor = [UIColor lightGrayColor];
-    self.borderWidth = 1.0 / [UIScreen mainScreen].scale;
-    self.cornerRadius = 8.0;
-    self.shadowOpacity = 0.25;
-    self.shadowColor = [UIColor blackColor];
-    self.shadowRadius = 6.0;
+    [self setBorderColor:[UIColor lightGrayColor]];
+    [self setBorderWidth:1.0 / [[UIScreen mainScreen] scale]];
+    [self setCornerRadius:8.0];
+    [self setShadowOpacity:0.25];
+    [self setShadowColor:[UIColor blackColor]];
+    [self setShadowRadius:6.0];
 }
 
 - (void)setOrientation:(ISHHoverBarOrientation)orientation {
@@ -227,7 +227,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     }
 
     _orientation = orientation;
-    (self.separatorView).orientation = orientation;
+    [self.separatorView setOrientation:orientation];
     [self invalidateIntrinsicContentSize];
     [self setNeedsLayout];
 }
@@ -268,14 +268,13 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    (self.backgroundView).frame = self.bounds;
-    (self.backgroundContainerView).frame = self.bounds;
-    (self.separatorView).frame = self.bounds;
-    (self.shadowLayer).frame = self.bounds;
-    
     CGFloat yStep = 0;
     CGFloat xStep = 0;
-    
+    [self.backgroundView setFrame:self.bounds];
+    [self.separatorView setFrame:self.bounds];
+    [self.shadowLayer setFrame:self.bounds];
+    (self.backgroundContainerView).frame = self.bounds;
+
     int i = 0;
     for (UIControl *control in self.controls) {
         CGFloat length = ISHHoverBarDefaultItemDimension;
@@ -315,9 +314,11 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
     for (UIBarButtonItem *item in self.items) {
         UIControl *control = [self newControlForBarButtonItem:item];
+
         if (!control) {
             continue;
         }
+
         [self.backgroundContainerView addSubview:control];
         [controls addObject:control];
         [self.itemsControlsMap setObject:item forKey:control];
@@ -390,7 +391,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     }
 
     _controls = controls;
-    self.separatorView.viewsToSeparate = controls;
+    [self.separatorView setViewsToSeparate:controls];
 }
 
 #pragma mark - Background view
@@ -398,7 +399,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     self.backgroundContainerView.clipsToBounds = (cornerRadius != 0);
     self.backgroundContainerView.layer.cornerRadius = cornerRadius;
-    self.shadowLayer.cornerRadius = cornerRadius;
+    [self.shadowLayer setCornerRadius:cornerRadius];
 }
 
 - (CGFloat)cornerRadius {
@@ -407,7 +408,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
     self.backgroundContainerView.layer.borderWidth = borderWidth;
-    self.separatorView.separatorWidth = borderWidth;
+    [self.separatorView setSeparatorWidth:borderWidth];
 }
 
 - (CGFloat)borderWidth {
@@ -416,7 +417,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 - (void)setBorderColor:(nullable UIColor *)borderColor {
     self.backgroundContainerView.layer.borderColor = borderColor.CGColor;
-    self.separatorView.separatorColor = borderColor;
+    [self.separatorView setSeparatorColor:borderColor];
 }
 
 - (nullable UIColor *)borderColor {
@@ -432,12 +433,12 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setEffect:(nullable UIVisualEffect *)effect {
-    self.backgroundView.effect = effect;
+    return [self.backgroundView setEffect:effect];
 }
 
 #pragma mark - Shadow
 - (void)setShadowColor:(nullable UIColor *)shadowColor {
-    self.shadowLayer.shadowColor = shadowColor.CGColor;
+    [self.shadowLayer setShadowColor:[shadowColor CGColor]];
 }
 
 - (nullable UIColor *)shadowColor {
@@ -449,7 +450,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setShadowRadius:(CGFloat)shadowRadius {
-    self.shadowLayer.shadowRadius = shadowRadius;
+    [self.shadowLayer setShadowRadius:shadowRadius];
 }
 
 - (CGFloat)shadowRadius {
@@ -457,7 +458,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)setShadowOpacity:(CGFloat)shadowOpacity {
-    (self.shadowLayer).shadowOpacity = shadowOpacity;
+    [self.shadowLayer setShadowOpacity:shadowOpacity];
 }
 
 - (CGFloat)shadowOpacity {
