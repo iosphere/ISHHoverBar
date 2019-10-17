@@ -22,9 +22,15 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 - (instancetype)init {
     self = [super init];
     CAShapeLayer *masklayer = [CAShapeLayer new];
+    masklayer.backgroundColor = UIColor.yellowColor.CGColor;
     self.maskShapeLayer = masklayer;
     masklayer.fillRule = kCAFillRuleEvenOdd;
-    masklayer.fillColor = [[UIColor blackColor] CGColor];
+    if (@available(iOS 13, *)) {
+        masklayer.fillColor = [[UIColor labelColor] CGColor];
+    }
+    else {
+        masklayer.fillColor = [[UIColor blackColor] CGColor];
+    }
     self.mask = masklayer;
     self.shadowOffset = CGSizeZero;
     return self;
@@ -72,7 +78,12 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 - (instancetype)init {
     self = [super init];
-    self.backgroundColor = [UIColor clearColor];
+    if (@available(iOS 13, *)) {
+        self.backgroundColor = [UIColor clearColor];
+    }
+    else {
+        self.backgroundColor = [UIColor clearColor];
+    }
     return self;
 }
 
@@ -188,7 +199,13 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 }
 
 - (void)commonInit {
-    [self setBackgroundColor:[UIColor clearColor]];
+    if (@available(iOS 13, *)) {
+        [self setBackgroundColor:[UIColor systemBackgroundColor]];
+    }
+    else {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    self.tintColor = UIColor.labelColor;
     self.itemsControlsMap = [NSMapTable weakToWeakObjectsMapTable];
 
     // add shadow layer
@@ -197,7 +214,15 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self.layer addSublayer:shadowLayer];
 
     // add visual effects view as background
-    UIVisualEffectView *bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    UIVisualEffectView *bgView;
+    if (@available(iOS 13, *)) {
+        bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemMaterialLight]];
+        [bgView setBackgroundColor:[UIColor systemBackgroundColor]];
+    }
+    else {
+        bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+        // [bgView setBackgroundColor: ...];
+    }
     [self setBackgroundView:bgView];
     [self addSubview:bgView];
 
@@ -207,11 +232,21 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self addSubview:sepView];
 
     // set default values
-    [self setBorderColor:[UIColor lightGrayColor]];
+    if (@available(iOS 13, *)) {
+        [self setBorderColor:[UIColor opaqueSeparatorColor]];
+    }
+    else {
+        [self setBorderColor:[UIColor lightGrayColor]];
+    }
     [self setBorderWidth:1.0 / [[UIScreen mainScreen] scale]];
     [self setCornerRadius:8.0];
     [self setShadowOpacity:0.25];
-    [self setShadowColor:[UIColor blackColor]];
+    if (@available(iOS 13, *)) {
+        [self setShadowColor:[UIColor blackColor]];
+    }
+    else {
+        [self setShadowColor:[UIColor blackColor]];
+    }
     [self setShadowRadius:6.0];
 }
 
