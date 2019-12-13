@@ -319,6 +319,10 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     if (item.title.length) {
         [button setTitle:item.title forState:UIControlStateNormal];
     }
+    
+    button.accessibilityHint = item.accessibilityHint;
+    button.accessibilityLabel = item.accessibilityLabel;
+    button.accessibilityValue = item.accessibilityValue;
 
     [button addTarget:self action:@selector(handleActionForControl:) forControlEvents:UIControlEventTouchUpInside];
     return button;
