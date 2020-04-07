@@ -128,4 +128,18 @@
     XCTAssertThrows([self.hoverBar setItems:@[systemItem]]);
 }
 
+- (void)testAccessibilityValuesSet {
+    
+    UIBarButtonItem *accessibleItem = [[UIBarButtonItem alloc] initWithTitle:@"1" style:UIBarButtonItemStylePlain target:nil action:nil];
+    accessibleItem.accessibilityLabel = @"Label";
+    accessibleItem.accessibilityHint = @"Hint";
+    accessibleItem.accessibilityValue = @"1";
+    [self.hoverBar setItems:@[accessibleItem]];
+    
+    
+    XCTAssertEqualObjects(self.hoverBar.controls.firstObject.accessibilityLabel, @"Label", @"The first control's accessibility label should be set correctly");
+    XCTAssertEqualObjects(self.hoverBar.controls.firstObject.accessibilityHint, @"Hint", @"The first control's accessibility hint should be set correctly");
+    XCTAssertEqualObjects(self.hoverBar.controls.firstObject.accessibilityValue, @"1", @"The first control's accessibility value should be set correctly");
+}
+
 @end
