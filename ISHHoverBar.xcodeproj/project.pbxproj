@@ -20,6 +20,8 @@
 		DC1CDCE81D344FA600EBF9E5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1CDCE71D344FA600EBF9E5 /* MapKit.framework */; };
 		DC5D282E1D3515C0005084AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282A1D3515C0005084AC /* LaunchScreen.storyboard */; };
 		DC5D282F1D3515C0005084AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D282C1D3515C0005084AC /* Main.storyboard */; };
+		FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */ = {isa = PBXBuildFile; fileRef = FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA90B96B20B74E0D006993F3 /* HoverBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA94120420B729B900E7C045 /* HoverBarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,9 @@
 		DC5D282B1D3515C0005084AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC5D282D1D3515C0005084AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC5D28311D351652005084AC /* ISHHoverBar+Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISHHoverBar+Tests.h"; sourceTree = "<group>"; };
+		FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISHHoverBarItemType.h; sourceTree = "<group>"; };
+		FA94120420B729B900E7C045 /* HoverBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HoverBarItem.m; sourceTree = "<group>"; };
+		FA94120620B729C200E7C045 /* HoverBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoverBarItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +148,7 @@
 			children = (
 				1BEE266B1D364BB100301E9E /* ISHHoverBar.h */,
 				DC1CDCE41D343FA400EBF9E5 /* ISHHoverBar.m */,
+				FA90B96920B74ACE006993F3 /* ISHHoverBarItemType.h */,
 				1BEE266D1D364BB100301E9E /* Info.plist */,
 			);
 			path = ISHHoverBar;
@@ -183,6 +189,8 @@
 		DC5D28301D3515CF005084AC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FA94120620B729C200E7C045 /* HoverBarItem.h */,
+				FA94120420B729B900E7C045 /* HoverBarItem.m */,
 				DC1CDCC11D343F5C00EBF9E5 /* AppDelegate.h */,
 				DC1CDCC21D343F5C00EBF9E5 /* AppDelegate.m */,
 				DC1CDCC41D343F5C00EBF9E5 /* ViewController.h */,
@@ -199,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BEE266C1D364BB100301E9E /* ISHHoverBar.h in Headers */,
+				FA90B96A20B74ACE006993F3 /* ISHHoverBarItemType.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +281,7 @@
 				TargetAttributes = {
 					1BEE26681D364BB100301E9E = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0930;
 					};
 					DC1CDCBA1D343F5C00EBF9E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -347,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA90B96B20B74E0D006993F3 /* HoverBarItem.m in Sources */,
 				DC1CDCC61D343F5C00EBF9E5 /* ViewController.m in Sources */,
 				DC1CDCC31D343F5C00EBF9E5 /* AppDelegate.m in Sources */,
 				DC1CDCC01D343F5C00EBF9E5 /* main.m in Sources */,
@@ -404,7 +415,9 @@
 		1BEE26731D364BB200301E9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -416,6 +429,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.ISHHoverBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -425,7 +440,9 @@
 		1BEE26741D364BB200301E9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -437,6 +454,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.iosphere.ISHHoverBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

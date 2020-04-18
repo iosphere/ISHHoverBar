@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ISHHoverBarItemType.h"
 
 typedef NS_ENUM (NSInteger, ISHHoverBarOrientation) {
     /// In vertical orientation the ISHHoverBar places bar buttons from top to bottom.
@@ -45,5 +46,7 @@ IB_DESIGNABLE
 
 /// The bar's shadow color. Default is black.
 @property (nonatomic, nullable) IBInspectable UIColor *shadowColor;
+
+-(void)reload;
 
 @end

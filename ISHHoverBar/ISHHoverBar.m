@@ -7,6 +7,7 @@
 //
 
 #import "ISHHoverBar.h"
+#import "ISHHoverBarItemType.h"
 
 const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
@@ -167,6 +168,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 
 @interface ISHHoverBar ()
 @property (nonatomic, nonnull) UIVisualEffectView *backgroundView;
+@property (nonatomic, nonnull) UIView *backgroundContainerView;
 @property (nonatomic, nonnull) ISHHoverSeparatorView *separatorView;
 @property (nonatomic, nonnull) ISHHoverShadowLayer *shadowLayer;
 @property (nonatomic, nullable) NSArray<UIControl *> *controls;
@@ -196,15 +198,19 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self setShadowLayer:shadowLayer];
     [self.layer addSublayer:shadowLayer];
 
+    UIView* backgroundContainerView = [[UIView alloc] init];
+    self.backgroundContainerView = backgroundContainerView;
+    [self addSubview:backgroundContainerView];
+    
     // add visual effects view as background
     UIVisualEffectView *bgView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
     [self setBackgroundView:bgView];
-    [self addSubview:bgView];
+    [self.backgroundContainerView addSubview:bgView];
 
     // add separator drawing view on top
     ISHHoverSeparatorView *sepView = [ISHHoverSeparatorView new];
     [self setSeparatorView:sepView];
-    [self addSubview:sepView];
+    [self.backgroundContainerView addSubview:sepView];
 
     // set default values
     [self setBorderColor:[UIColor lightGrayColor]];
@@ -240,7 +246,16 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 #pragma mark - Layout
 
 - (CGSize)intrinsicContentSize {
-    CGFloat itemLength = ISHHoverBarDefaultItemDimension * (CGFloat)self.items.count;
+    
+    CGFloat itemLength = 0.0;
+    for (UIBarButtonItem* item in self.items) {
+        NSLog(@"%d", [item conformsToProtocol:@protocol(ISHHoverBarItemType)]);
+        if ([item conformsToProtocol:@protocol(ISHHoverBarItemType)]) {
+            itemLength += ((UIBarButtonItem<ISHHoverBarItemType> *)item).length;
+        } else {
+            itemLength += ISHHoverBarDefaultItemDimension;
+        }
+    }
 
     switch (self.orientation) {
         case ISHHoverBarOrientationVertical:
@@ -258,23 +273,37 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
     [self.backgroundView setFrame:self.bounds];
     [self.separatorView setFrame:self.bounds];
     [self.shadowLayer setFrame:self.bounds];
+    (self.backgroundContainerView).frame = self.bounds;
 
-    switch (self.orientation) {
-        case ISHHoverBarOrientationVertical:
-            yStep = ISHHoverBarDefaultItemDimension;
-            break;
-
-        case ISHHoverBarOrientationHorizontal:
-            xStep = ISHHoverBarDefaultItemDimension;
-            break;
-    }
-
-    CGRect frame = CGRectMake(0, 0, ISHHoverBarDefaultItemDimension, ISHHoverBarDefaultItemDimension);
-
+    int i = 0;
     for (UIControl *control in self.controls) {
-        [control setFrame:frame];
-        frame = CGRectOffset(frame, xStep, yStep);
+        CGFloat length = ISHHoverBarDefaultItemDimension;
+        if ([self.items[i] conformsToProtocol:@protocol(ISHHoverBarItemType)]) {
+            length = ((UIBarButtonItem<ISHHoverBarItemType> *) self.items[i]).length;
+        }
+        CGRect frame;
+        
+        switch (self.orientation) {
+            case ISHHoverBarOrientationVertical:
+                frame = CGRectMake(0, 0, ISHHoverBarDefaultItemDimension, length);
+                control.frame = CGRectOffset(frame, xStep, yStep);
+                yStep += length;
+                break;
+                
+            case ISHHoverBarOrientationHorizontal:
+                frame = CGRectMake(0, 0, length, ISHHoverBarDefaultItemDimension);
+                control.frame = CGRectOffset(frame, xStep, yStep);
+                xStep += length;
+                break;
+        }
+        i++;
     }
+}
+
+-(void)reload {
+    [self.separatorView setNeedsDisplay];
+    [self invalidateIntrinsicContentSize];
+    [self setNeedsLayout];
 }
 
 #pragma mark - Control management
@@ -290,7 +319,7 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
             continue;
         }
 
-        [self addSubview:control];
+        [self.backgroundContainerView addSubview:control];
         [controls addObject:control];
         [self.itemsControlsMap setObject:item forKey:control];
     }
@@ -372,32 +401,32 @@ const CGFloat ISHHoverBarDefaultItemDimension = 44.0;
 #pragma mark - Background view
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    [self.backgroundView setClipsToBounds:(cornerRadius != 0)];
-    [self.backgroundView.layer setCornerRadius:cornerRadius];
+    self.backgroundContainerView.clipsToBounds = (cornerRadius != 0);
+    self.backgroundContainerView.layer.cornerRadius = cornerRadius;
     [self.shadowLayer setCornerRadius:cornerRadius];
 }
 
 - (CGFloat)cornerRadius {
-    return self.backgroundView.layer.cornerRadius;
+    return self.backgroundContainerView.layer.cornerRadius;
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
-    [self.backgroundView.layer setBorderWidth:borderWidth];
+    self.backgroundContainerView.layer.borderWidth = borderWidth;
     [self.separatorView setSeparatorWidth:borderWidth];
 }
 
 - (CGFloat)borderWidth {
-    return self.backgroundView.layer.borderWidth;
+    return self.backgroundContainerView.layer.borderWidth;
 }
 
 - (void)setBorderColor:(nullable UIColor *)borderColor {
-    [self.backgroundView.layer setBorderColor:[borderColor CGColor]];
+    self.backgroundContainerView.layer.borderColor = borderColor.CGColor;
     [self.separatorView setSeparatorColor:borderColor];
 }
 
 - (nullable UIColor *)borderColor {
-    if (self.backgroundView.layer.borderColor) {
-        return [UIColor colorWithCGColor:self.backgroundView.layer.borderColor];
+    if (self.backgroundContainerView.layer.borderColor) {
+        return [UIColor colorWithCGColor:self.backgroundContainerView.layer.borderColor];
     }
 
     return nil;
